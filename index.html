@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b12">
+  <title>DURA GAMES</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">D</span>DURA <b>GAMES</b></a>
+    <nav><a href="#catalogo">Jogos</a><a href="#apoio">Apoiar</a></nav>
+    <div class="auth-actions" id="authActions">
+      <button class="btn ghost" id="openLogin">Entrar</button>
+      <button class="btn primary" id="openRegister">Criar conta</button>
+    </div>
+    <div class="user-actions hidden" id="userActions">
+      <span id="helloUser"></span><button class="btn ghost" id="adminButton">Admin</button><button class="btn ghost" id="logout">Sair</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">SUA PRÓXIMA AVENTURA COMEÇA AQUI</span>
+        <h1>JOGUE. EXPLORE.<br><span>VÁ ALÉM.</span></h1>
+        <p>Descubra jogos, acompanhe novidades e encontre sua próxima diversão na DURA GAMES.</p>
+        <a class="btn primary large" href="#catalogo">Explorar jogos <span>↗</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="orb"></div><div class="hero-controller">🎮</div><div class="float-tag tag-one">DIVERSÃO SEM LIMITES</div><div class="float-tag tag-two">DURA GAMES</div></div>
+    </section>
+
+    <section class="stats-strip">
+      <div><strong id="gameTotal">0</strong><span>JOGOS NO CATÁLOGO</span></div>
+      <div><strong id="availableTotal">0</strong><span>DISPONÍVEIS</span></div>
+      <div><strong id="visitorTotal">—</strong><span>VISITANTES ONLINE</span></div>
+    </section>
+
+    <section class="section" id="catalogo">
+      <div class="section-heading"><div><span class="eyebrow">DESCUBRA</span><h2>Catálogo de jogos</h2></div><input id="searchGames" class="search" type="search" placeholder="Buscar jogo..."></div>
+      <div id="gameGrid" class="game-grid"></div>
+      <p id="emptyState" class="empty hidden">Nenhum jogo encontrado. Volte mais tarde!</p>
+    </section>
+
+    <section class="support section" id="apoio">
+      <div><span class="eyebrow">AJUDE O PROJETO</span><h2>Fortaleça a DURA GAMES</h2><p>Se quiser apoiar a plataforma, você pode contribuir via PIX. O apoio é opcional e não libera vantagens pagas.</p></div>
+      <div class="pix-card"><div class="pix-icon">✦</div><div><strong>Apoie via PIX</strong><small id="pixKeyLabel">Chave PIX ainda não configurada</small></div><button class="btn primary" id="copyPix" disabled>Copiar chave</button></div>
+    </section>
+    <section class="ad-placeholder"><span>ESPAÇO RESERVADO PARA ANÚNCIOS</span><small>Os anúncios só aparecerão após a integração voluntária com uma plataforma de anúncios.</small></section>
+  </main>
+
+  <footer><a class="brand" href="#"><span class="brand-mark">D</span>DURA <b>GAMES</b></a><span>© <span id="year"></span> DURA GAMES · Feito para jogar.</span></footer>
+
+  <div class="modal hidden" id="authModal"><div class="modal-card"><button class="close" data-close="authModal">×</button><span class="eyebrow">BEM-VINDO À DURA GAMES</span><h2 id="authTitle">Entrar</h2><form id="authForm"><label>Nome de usuário<input id="authName" minlength="3" maxlength="24" required autocomplete="username" placeholder="Seu nome"></label><label>Senha<div class="password-wrap"><input id="authPassword" type="password" minlength="8" required autocomplete="current-password" placeholder="Mínimo de 8 caracteres"><button type="button" class="toggle-pass" data-target="authPassword">Mostrar</button></div></label><label id="repeatWrap" class="hidden">Repetir senha<div class="password-wrap"><input id="repeatPassword" type="password" minlength="8" autocomplete="new-password" placeholder="Digite novamente"><button type="button" class="toggle-pass" data-target="repeatPassword">Mostrar</button></div></label><p class="form-error" id="authError"></p><button class="btn primary full" id="authSubmit">Entrar</button></form><p class="switch-auth" id="switchAuth"></p></div></div>
+
+  <div class="modal hidden" id="adminModal"><div class="modal-card wide"><button class="close" data-close="adminModal">×</button><span class="eyebrow">CONTROLE DA PLATAFORMA</span><h2>Painel administrativo</h2><div class="admin-stats"><div><strong id="adminGames">0</strong><small>Jogos cadastrados</small></div><div><strong id="adminClicks">0</strong><small>Acessos registrados neste navegador</small></div><div><strong>Indisponível</strong><small>Visitantes online globais no modo local</small></div></div>
+    <form id="gameForm" class="game-form"><h3 id="gameFormTitle">Adicionar jogo</h3><input type="hidden" id="editId"><label>Nome do jogo<input id="gameName" required maxlength="60" placeholder="Ex.: DURA Adventure"></label><label>Link do jogo<input id="gameLink" type="url" required placeholder="https://..."></label><label>Descrição (opcional)<textarea id="gameDescription" rows="2" maxlength="240" placeholder="Conte um pouco sobre o jogo"></textarea></label><label>Status<select id="gameStatus"><option>Disponível</option><option>Desenvolvendo</option><option>Manutenção</option></select></label><button class="btn primary" type="submit">Salvar jogo</button><button class="btn ghost hidden" type="button" id="cancelEdit">Cancelar edição</button></form>
+    <h3>Jogos cadastrados</h3><div id="adminGameList" class="admin-list"></div>
+    <div class="settings-box"><h3>Configurações</h3><label>Chave PIX<input id="pixInput" placeholder="Digite sua chave PIX"></label><button class="btn ghost" id="savePix">Salvar chave PIX</button><p class="notice">Modo local: as configurações ficam somente neste navegador. Não use esta versão para dados sensíveis ou administração pública.</p></div>
+  </div></div>
+  <div class="toast" id="toast"></div>
+  <script src="config.js"></script><script src="app.js"></script>
+</body></html>
